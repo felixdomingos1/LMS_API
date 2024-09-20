@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"  
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id            Int            @id @default(autoincrement())
+  nome          String
+  email         String         @unique
+  senha_hash         String
+  telefone      String?        // Opcional
+  data_cadastro DateTime       @default(now())
+  pagamentos    Pagamento[]
+  cursos        Curso[]
+  progresso     ProgressoCurso[]
+  certificados  Certificado[]
+  comentarios   Comentario[]
+}
+
+model Curso {
+  id           Int             @id @default(autoincrement())
+  titulo       String
+  descricao    String
+  preco        Float
+  conteudo     Json
+  imagem_capa  String
+  categoria    Categoria       @relation(fields: [categoriaId], references: [id])
+  categoriaId  Int
+  data_criacao DateTime        @default(now())
+  pagamentos   Pagamento[]
+  progresso    ProgressoCurso[]
+  certificados Certificado[]
+  comentarios  Comentario[]
+
+  Usuario Usuario[]
+}
+
+model Categoria {
+  id    Int     @id @default(autoincrement())
+  nome  String
+  cursos Curso[]
+}
+
+model Pagamento {
+  id              Int        @id @default(autoincrement())
+  usuario         Usuario    @relation(fields: [usuarioId], references: [id])
+  usuarioId       Int
+  curso           Curso      @relation(fields: [cursoId], references: [id])
+  cursoId         Int
+  valor           Float
+  status_pagamento String     // Status: pendente, concluído
+  data_pagamento  DateTime    @default(now())
+}
+
+model ProgressoCurso {
+  id             Int         @id @default(autoincrement())
+  usuario        Usuario     @relation(fields: [usuarioId], references: [id])
+  usuarioId      Int
+  curso          Curso       @relation(fields: [cursoId], references: [id])
+  cursoId        Int
+  progresso      Float       // Percentual de progresso
+  data_atualizacao DateTime  @updatedAt
+}
+
+model Certificado {
+  id             Int         @id @default(autoincrement())
+  usuario        Usuario     @relation(fields: [usuarioId], references: [id])
+  usuarioId      Int
+  curso          Curso       @relation(fields: [cursoId], references: [id])
+  cursoId        Int
+  data_conclusao DateTime    @default(now())
+  certificado_url String
+}
+
+model Comentario {
+  id             Int         @id @default(autoincrement())
+  usuario        Usuario     @relation(fields: [usuarioId], references: [id])
+  usuarioId      Int
+  curso          Curso       @relation(fields: [cursoId], references: [id])
+  cursoId        Int
+  texto          String
+  data_comentario DateTime   @default(now())
+  status         String      // Status: aprovado, pendente, removido
+}
