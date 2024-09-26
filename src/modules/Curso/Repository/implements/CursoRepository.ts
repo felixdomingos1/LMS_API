@@ -35,6 +35,9 @@ class CursoRepository implements ICursoRepository {
           categoria: true,
           comentarios: true,
           progresso: true,
+          Usuario:true,
+          pagamentos:true,
+          certificados:true,
         },
       });
 
@@ -46,6 +49,9 @@ class CursoRepository implements ICursoRepository {
         categoria: true,
         comentarios: true,
         progresso: true,
+        Usuario:true,
+        pagamentos:true,
+        certificados:true
       },
     });
     return curso;
