@@ -28,7 +28,18 @@ class CursoRepository implements ICursoRepository {
     return curso;
   }
 
-  async findById(id: number): Promise<Curso | null> {
+  async findById(id: number | null): Promise<Curso | Curso[] | null> {
+    if (!id) {
+      const curso = await prisma.curso.findMany({
+        include: {
+          categoria: true,
+          comentarios: true,
+          progresso: true,
+        },
+      });
+
+      return curso; 
+    }
     const curso = await prisma.curso.findUnique({
       where: { id },
       include: {

@@ -20,7 +20,7 @@ interface ICreateCursoDTO {
   }
   interface ICursoRepository {
     create(data: ICreateCursoDTO): Promise<Curso>;
-    findById(id: number): Promise<Curso | null>;
+    findById(id: number): Promise<Curso | Curso[] |  null>;
   }
   
   interface ICategoriaRepository {

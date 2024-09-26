@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createCurso } from "../../modules/Curso/UseCases/CriarCurso";
+import { pegarCursos } from "../../modules/Curso/UseCases/PegarCurso";
 
 const cursoRouter = Router()
 
@@ -9,20 +10,13 @@ cursoRouter.post(
         return createCurso.handle(req,res)
     }
 )
-
-// usuarioRouter.post(
-//     "/login", 
-//     (req, res)=>{
-//         return session.handle(req,res)
-//     }
-// )
-
-// usuarioRouter.get(
-//     "/pegar/:id", 
-//     (req, res)=>{
-//         return pegarUsuario.handle(req,res)
-//     }
-// )
+ 
+cursoRouter.get(
+    "/pegar-curso/:id", 
+    (req, res)=>{
+        return pegarCursos.handle(req,res)
+    }
+)
 
 // usuarioRouter.put(
 //     "/atualizar/:id", 
