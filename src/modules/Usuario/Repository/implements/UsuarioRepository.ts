@@ -9,7 +9,7 @@ class UsuarioRepository implements IUsuarioRepository {
         });
         return usuario;
     }
-
+    
     async findByEmail(email: string): Promise<Usuario | null> {
         const usuario = await prisma.usuario.findUnique({
             where: { email },

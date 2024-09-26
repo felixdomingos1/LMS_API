@@ -7,7 +7,8 @@
     "dev": "nodemon --exec ts-node server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "prisma:migrate": "prisma migrate dev --name init",
+    "git":"git add . && git commit -m \" atualizadas \" && git push",
+    "prisma": "npx prisma migrate dev --name init",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio"
   },

@@ -11,14 +11,14 @@ model Usuario {
   id            Int            @id @default(autoincrement())
   nome          String
   email         String         @unique
-  senha_hash         String
-  telefone      String?        // Opcional
+  senha_hash    String
+  telefone      String?        
   data_cadastro DateTime       @default(now())
-  pagamentos    Pagamento[]
-  cursos        Curso[]
-  progresso     ProgressoCurso[]
-  certificados  Certificado[]
-  comentarios   Comentario[]
+  pagamentos    Pagamento[]    
+  cursos        Curso[]        
+  progresso     ProgressoCurso[] 
+  certificados  Certificado[]  
+  comentarios   Comentario[]   
 }
 
 model Curso {
