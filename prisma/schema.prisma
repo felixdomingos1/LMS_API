@@ -62,7 +62,7 @@ model ProgressoCurso {
   usuarioId      Int
   curso          Curso       @relation(fields: [cursoId], references: [id])
   cursoId        Int
-  progresso      Float       // Percentual de progresso
+  progresso      Float        
   data_atualizacao DateTime  @updatedAt
 }
 
