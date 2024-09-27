@@ -5,6 +5,7 @@ import { categoriaRouter } from "./categoriaRoutes/categoriaRouter";
 import { pagamentoRouter } from "./pagamentoRoutes/pagamentoRouter";
 import { progressoCursoRouter } from "./progressoCursoRoutes/progressoCursoRouter";
 import { comentarioRouter } from "./comentarioRoutes/comentarioRouter";
+import { certificadoRouter } from "./certificadoRoutes/certificadoRouter";
 
 const routes = Router();
 
@@ -19,5 +20,6 @@ routes.use("/api/categoria", categoriaRouter);
 routes.use("/api/pagamentos", pagamentoRouter);
 routes.use("/api/progresso", progressoCursoRouter);
 routes.use("/api/comentario", comentarioRouter);
+routes.use("/api/certificado", certificadoRouter);
 
 export { routes }
